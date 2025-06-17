@@ -2,7 +2,7 @@
 
 Welcome to **AI Sandbox** — a curated collection of boilerplate code for common Machine Learning (ML) and Artificial Intelligence (AI) workflows. Whether you're prototyping models, building pipelines, or deploying solutions, this sandbox accelerates your process with reusable, production-friendly code snippets.
 
-![AI Sandbox Banner](assets/ai-sandbox.png)
+![AI Sandbox Banner](assets/ai_sandbox.png)
 
 ---
 
