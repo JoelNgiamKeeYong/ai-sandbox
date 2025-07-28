@@ -7,8 +7,37 @@ from IPython.display import display
 
 def perform_univariate_analysis(
     df, feature,
-    show_plots=True, top_n_pie=5, bins=30, skew_thresh=1.0, kurt_thresh=3.0, high_card_threshold=25, rare_threshold=0.01
+    show_plots=True,
+    top_n_pie=5, bins=30, skew_thresh=1.0, kurt_thresh=3.0, high_card_threshold=25, rare_threshold=0.01
 ):
+    """
+    Perform a comprehensive univariate analysis of a specified feature (numerical or categorical).
+
+    For numerical features:
+    - Prints data type, unique values, summary stats, skewness, and kurtosis.
+    - Detects outliers using IQR or Z-score method depending on distribution.
+    - Visualizes with histogram + KDE, boxplot, violin plot, and QQ plot.
+
+    For categorical features:
+    - Prints unique value counts and frequency table with percentages.
+    - Flags constant, high-cardinality, and rare categories.
+    - Checks for formatting inconsistencies (e.g., whitespace, capitalization).
+    - Visualizes with countplot and pie chart (grouping small categories into "Others").
+
+    Parameters:
+        df (pd.DataFrame): The input dataset.
+        feature (str): The column name to analyze.
+        show_plots (bool): Whether to display plots (default: True).
+        top_n_pie (int): Number of top categories to show in pie chart before grouping others (default: 5).
+        bins (int): Number of bins for histogram (default: 30).
+        skew_thresh (float): Threshold for flagging skewness as high (default: 1.0).
+        kurt_thresh (float): Threshold for flagging excess kurtosis as high (default: 3.0).
+        high_card_threshold (int): Threshold to flag a feature as high-cardinality (default: 25 unique values).
+        rare_threshold (float): Minimum proportion to consider a category as non-rare (default: 0.01 = 1%).
+
+    Returns:
+        None. Displays printed summaries and visual plots.
+    """
     print(f"🔎 Performing univariate analysis:")
     col_type = "categorical" if df[feature].dtype in ['object', 'category'] else "numerical"
     print(f" └── Column '{feature}' (Type: {col_type})\n")
@@ -104,6 +133,7 @@ def perform_univariate_analysis(
         # 3. Unique values
         unique_values = df[feature].dropna().unique()
         print(f"💎 Unique Non-NA Values: {len(unique_values)}")
+        print(f"📋 List of Unique Non-NA Values: {df[feature].unique().tolist()}")
 
         # 4. Frequency table
         counts = df[feature].value_counts()
@@ -152,9 +182,17 @@ def perform_univariate_analysis(
             fig, axes = plt.subplots(1, 2, figsize=(16, 6), gridspec_kw={'width_ratios': [2, 1]})
             fig.suptitle(f"Graphical Analysis of '{feature}'", fontsize=16, fontweight='bold', color='#333333')
 
-            # 10.1. Countplot
-            sorted_categories = counts.index
-            sns.countplot(data=df, x=feature, hue=feature, ax=axes[0], order=sorted_categories, palette="tab20c")
+            # Define consistent color palette mapping
+            categories = counts.index.tolist()
+            palette_colors = sns.color_palette("tab20c", n_colors=len(categories))
+            color_mapping = dict(zip(categories, palette_colors))
+
+            # 10.1. Countplot (uses mapped colors)
+            sns.countplot(
+                data=df, x=feature, ax=axes[0],
+                order=categories,
+                palette=color_mapping
+            )
             axes[0].set_title("Countplot", fontsize=14, fontweight='bold', color='#444444')
             axes[0].tick_params(axis='x', rotation=45)
             axes[0].set_xlabel("")
@@ -166,15 +204,17 @@ def perform_univariate_analysis(
                 top_n = counts[:top_n_pie]
                 others = pd.Series(counts[top_n_pie:].sum(), index=["Others"])
                 pie_data = pd.concat([top_n, others])
+                pie_colors = [color_mapping.get(cat, '#999999') for cat in pie_data.index]
             else:
                 pie_data = counts
+                pie_colors = [color_mapping[cat] for cat in pie_data.index]
 
             wedges, texts, autotexts = axes[1].pie(
                 pie_data,
                 labels=pie_data.index,
                 autopct=lambda pct: f'{pct:.1f}%\n({int(pct/100 * pie_data.sum())})',
                 startangle=90,
-                colors=sns.color_palette('tab20c'),
+                colors=pie_colors,
                 textprops={'fontsize': 10}
             )
             axes[1].set_title("Pie Chart", fontsize=14, fontweight='bold', color='#444444')
