@@ -1,4 +1,4 @@
-# **Version Control**
+# **Git Version Control**
 
 ## 🆚 Initialize Git in Project Repository
 
