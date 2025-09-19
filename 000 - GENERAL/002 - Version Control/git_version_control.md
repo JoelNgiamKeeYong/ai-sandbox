@@ -12,7 +12,7 @@
 
    ```cmd
    git init                                                 :: Initialize git repo
-   git add .                                                :: Stage files
+   git add -A                                               :: Stage all changes
    git commit -m "initial commit"                           :: Commit initial files
    ```
 
@@ -134,6 +134,7 @@
   git pull origin <branch-name>                           :: Pull updates and merge into current branch
   git push origin <branch-name>                           :: Push local commits to remote
   git remote -v                                           :: Check remote URLs
+  git remote get-url origin                               :: Get remote URL only
   ```
 
 - **Advanced / Inspection** - commands for deeper inspection and collaboration:

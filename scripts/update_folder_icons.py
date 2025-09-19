@@ -32,13 +32,20 @@ def scan_folders(path):
     for item in os.listdir(path):
         folder_path = os.path.join(path, item)
         if os.path.isdir(folder_path):
+
+            # ✅ Direct rule: if folder is literally named "leetcode"
+            # if item.lower() == "leetcode":
+            #     rel_path = os.path.relpath(folder_path, project_path)
+            #     folder_associations[rel_path.replace("\\", "/")] = "Src"
+
+            # ✅ Prefix rule: if folder matches "000 - Something"
             match = pattern.match(item)
             if match:
                 first_digit = match.group(1)[0]
                 icon = icon_mapping.get(first_digit, "Folder")
-                # Store relative path from project root for VSCode
                 rel_path = os.path.relpath(folder_path, project_path)
                 folder_associations[rel_path.replace("\\", "/")] = icon
+
             # Recurse into subfolder
             scan_folders(folder_path)
 
