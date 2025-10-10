@@ -3,6 +3,9 @@
         "000 - GENERAL": "Mock",
         "000 - GENERAL/001 - Project Setup": "Mock",
         "000 - GENERAL/002 - Version Control": "Mock",
+        "000 - GENERAL/003 - Shell Scripting": "Mock",
+        "000 - GENERAL/004 - Package Management": "Mock",
+        "000 - GENERAL/005 - Logging": "Mock",
         "000 - GENERAL/099 -----------------------------------------": "Mock",
         "100 - DATA INGESTION": "Download",
         "100 - DATA INGESTION/101 - Data Collection": "Download",
@@ -22,6 +25,7 @@
         "300 - MODEL DEVELOPMENT/301 - Model Training": "Graphql",
         "300 - MODEL DEVELOPMENT/302 - Model Evaluation": "Graphql",
         "300 - MODEL DEVELOPMENT/303 - Model Explainability": "Graphql",
+        "300 - MODEL DEVELOPMENT/304 - Experiment Tracking": "Graphql",
         "300 - MODEL DEVELOPMENT/399 ----------------------------------------": "Graphql",
         "400 - MODEL DEPLOYMENT": "Global",
         "400 - MODEL DEPLOYMENT/401 - Model Serving": "Global",
@@ -30,7 +34,6 @@
         "500 - DOCUMENTATION": "Batch",
         "600 - NLP": "Messages",
         "700 - COMPUTER VISION": "Circleci",
-        "999 -----------------------------------------": "EMPTY BLACK LINE",
-        "leetcode": "Src"
+        "999 -----------------------------------------": "EMPTY BLACK LINE"
     }
 }
