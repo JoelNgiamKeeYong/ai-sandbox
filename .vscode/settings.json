@@ -30,6 +30,7 @@
         "400 - MODEL DEPLOYMENT": "Global",
         "400 - MODEL DEPLOYMENT/401 - Model Serving": "Global",
         "400 - MODEL DEPLOYMENT/402 - Model Monitoring": "Global",
+        "400 - MODEL DEPLOYMENT/403 - CICD": "Global",
         "400 - MODEL DEPLOYMENT/499 ----------------------------------------": "Global",
         "500 - DOCUMENTATION": "Batch",
         "600 - NLP": "Messages",

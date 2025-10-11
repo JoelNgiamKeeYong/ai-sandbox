@@ -1,0 +1,51 @@
+VS Code Extensions Set Up
+
+----------------------
+✅ Install
+----------------------
+$ CODE_CMD=$(which code-server) && \
+    grep '^- ' vs_code_extensions.txt | sed -n 's/^- *//;s/[[:space:]]*#.*//;s/^[[:space:]]*//;s/[[:space:]]*$//p' | \
+    xargs -L 1 "$CODE_CMD" --install-extension
+
+----------------------
+❌ Uninstall
+----------------------
+$ CODE_CMD=$(which code-server) && \
+    grep '^- ' vs_code_extensions.txt | sed -n 's/^- *//;s/[[:space:]]*#.*//;s/^[[:space:]]*//;s/[[:space:]]*$//p' | \
+    xargs -L 1 "$CODE_CMD" --uninstall-extension
+
+----------------------
+⬇️ List of Extensions
+----------------------
+
+🐍 Python & Jupyter
+- ms-python.python  # Python
+- ms-toolsai.jupyter  # Jupyter
+
+🖌️ Formatting & Linting
+- esbenp.prettier-vscode  # Prettier
+- usernamehw.errorlens  # Error Lens
+- streetsidesoftware.code-spell-checker  # Code Spell Checker
+
+📝 Productivity
+- alefragnani.project-manager  # Project Manager
+- Gruntfuggly.todo-tree  # Todo Tree
+- alefragnani.Bookmarks  # Bookmarks
+
+🌐 Web & Frontend
+- ritwickdey.LiveServer  # Live Server
+- kisstkondoros.vscode-gutter-preview  # Image Preview
+- AykutSarac.jsoncrack-vscode  # JSON Crack
+
+🐳 Containers & Cloud
+- ms-azuretools.vscode-docker  # Docker
+- ms-azuretools.vscode-containers  # Container Tools
+- ms-kubernetes-tools.vscode-kubernetes-tools  # Kubernetes
+- GitHub.copilot  # GitHub Copilot
+
+📂 File & Path Helpers
+- christian-kohler.path-intellisense  # Path Intellisense
+- tamasfe.even-better-toml  # Even Better TOML
+- PKief.material-icon-theme  # Material Icon Theme
+- redhat.vscode-yaml  # YAML
+- kamikillerto.vscode-colorize  # Colorize

@@ -2,7 +2,6 @@ import torch
 import platform
 import psutil
 
-
 class TorchInfo:
     """Utility class for inspecting PyTorch, CUDA, GPU, and system info."""
 

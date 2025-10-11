@@ -1,4 +1,6 @@
 # 🚀 python scripts/update_folder_icons.py
+# TODO: Placeholder for additional imports if needed
+# FIXME: To do stuff
 
 import os
 import json
